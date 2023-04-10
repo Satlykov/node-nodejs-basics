@@ -1,5 +1,12 @@
+import fs from 'node:fs/promises';
+import path from 'path';
+
+const filePath = path.resolve('src/streams/files/fileToRead.txt');
+
 const read = async () => {
-    // Write your code here 
+  fs.open(filePath)
+    .then((file) => file.createReadStream())
+    .then((stream) => stream.pipe(process.stdout));
 };
 
 await read();
